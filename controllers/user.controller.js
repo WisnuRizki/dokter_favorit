@@ -103,6 +103,9 @@ const sendPhoto = async (req,res) => {
     return res.sendFile(fullfilepath)
 }
 
+const a = async (req,res) => {
+    
+}
 
 
 module.exports = {
