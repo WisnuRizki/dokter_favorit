@@ -1,5 +1,5 @@
 'use strict';
-const bcrypt = require('bcrypt');
+
 module.exports = {
   async up (queryInterface, Sequelize) {
     /**
@@ -11,16 +11,22 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     const password = bcrypt.hashSync("ADMINimbd", bcrypt.genSaltSync(10));
-     await queryInterface.bulkInsert('Users', [{
-         role_id: 1,
-         name: 'wisnu',
-         email: 'wisnu@gmail.com',
-         password: password,
-         address: 'semarang',
-         photoUrl: `http://localhost:3000/user/sendPhoto/user1.jpg`,
-         createdAt: new Date(),
-         updatedAt: new Date()
+     await queryInterface.bulkInsert('Categories', [{
+      category: 'jantung & paru',
+      createdAt: new Date(),
+      updatedAt: new Date()
+     },{
+      category: 'spesialis anak',
+      createdAt: new Date(),
+      updatedAt: new Date()
+     },{
+      category: 'spesialis kulit',
+      createdAt: new Date(),
+      updatedAt: new Date()
+     },{
+      category: 'spesialis penyakit dalam',
+      createdAt: new Date(),
+      updatedAt: new Date()
      }], {});
   },
 
