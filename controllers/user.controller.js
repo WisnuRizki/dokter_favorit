@@ -1,7 +1,8 @@
-const { User } = require('../models/index')
+const { User,Role,sequelize } = require('../models/index')
 const bcrypt = require('bcrypt');
 const path = require('path');
-const {generateToken} =  require('../midlleware/authentication')
+const {generateToken} =  require('../midlleware/authentication');
+const role = require('../models/role');
 
 const signUp = async (req,res) => {
     const body = req.body;
@@ -45,7 +46,20 @@ const login = async (req,res) => {
     await User.findOne({
         where: {
             email: email
-        }
+        },
+        attributes: [
+            'name',
+            'photoUrl',
+            'address',
+            'password',
+            [sequelize.literal(`"role"."role"`), "userRole"],
+        ],
+        subQuery: false,
+        include: [{
+            model: Role,
+            as: 'role',
+            atrributes: []
+        }]
     }).then(data => {
         const passwordValid = bcrypt.compareSync(password, data.password);
 
@@ -67,6 +81,7 @@ const login = async (req,res) => {
         return res.status(200).json({
             status: "success",
             message: "user berhasil login",
+            data:data,
             token: token
         })
     })
