@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
   Appointment.init({
     user_id: DataTypes.INTEGER,
     dokter_id: DataTypes.INTEGER,
-    symptoms: DataTypes.STRING
+    symptoms: DataTypes.STRING,
+    status: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Appointment',

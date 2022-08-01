@@ -14,7 +14,7 @@ module.exports = {
       grandTotal: {
         type: Sequelize.INTEGER
       },
-      isPaid: {
+      status: {
         type: Sequelize.BOOLEAN
       },
       createdAt: {

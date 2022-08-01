@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Payment.init({
     appointment_id: DataTypes.INTEGER,
     grandTotal: DataTypes.INTEGER,
-    isPaid: DataTypes.BOOLEAN
+    status: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Payment',

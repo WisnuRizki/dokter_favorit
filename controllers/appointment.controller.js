@@ -15,7 +15,8 @@ const addAppointment = async (req,res) => {
             const createAppoinment = await Appointment.create({
                user_id: user_id,
                dokter_id: dokter_id,
-               symptoms: symptoms
+               symptoms: symptoms,
+               status: false
             }, { transaction: t })
             
             const findDokter = await Dokter.findOne({
@@ -27,7 +28,7 @@ const addAppointment = async (req,res) => {
             const createPayment = await Payment.create({
                 appointment_id: createAppoinment.id,
                 grandTotal: findDokter.price * 0.11,
-                isPaid: false
+                status: false
             })
 
             return res.status(200).json({
